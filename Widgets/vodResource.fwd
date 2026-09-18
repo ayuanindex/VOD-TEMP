@@ -10,7 +10,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/百度云资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/百度云资源.js"
     },
     {
       "id": "jisu_resource",
@@ -19,7 +19,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/极速资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/极速资源.js"
     },
     {
       "id": "xinlangdianbo_resource",
@@ -28,7 +28,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/新浪点播.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/新浪点播.js"
     },
     {
       "id": "hongniu_resource",
@@ -37,7 +37,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/红牛资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/红牛资源.js"
     },
     {
       "id": "feifan_resource",
@@ -46,7 +46,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/非凡资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/非凡资源.js"
     },
     {
       "id": "liangzi_resource",
@@ -55,7 +55,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/量子资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/量子资源.js"
     },
     {
       "id": "ikun_resource",
@@ -64,7 +64,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/ikun资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/ikun资源.js"
     },
     {
       "id": "guangsu_resource",
@@ -73,7 +73,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/光速资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/光速资源.js"
     },
     {
       "id": "ck_resource",
@@ -82,7 +82,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/ck资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/ck资源.js"
     },
     {
       "id": "uku_resource",
@@ -91,7 +91,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/U酷资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/U酷资源.js"
     },
     {
       "id": "shandian_resource",
@@ -100,7 +100,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/闪电资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/闪电资源.js"
     },
     {
       "id": "huhu_resource",
@@ -109,7 +109,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/火狐资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/火狐资源.js"
     },
     {
       "id": "huya_resource",
@@ -118,7 +118,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/虎牙资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/虎牙资源.js"
     },
     {
       "id": "yinghua_resource",
@@ -127,7 +127,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/樱花资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/VodResource/樱花资源.js"
     }
   ]
 }
