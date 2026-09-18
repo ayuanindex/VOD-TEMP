@@ -10,7 +10,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/百度云资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/vodResource/百度云资源.js"
     },
     {
       "id": "jisu_resource",
@@ -19,7 +19,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/极速资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/vodResource/极速资源.js"
     },
     {
       "id": "suoni_resource",
@@ -28,7 +28,16 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.0",
       "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/索尼资源.js"
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/vodResource/索尼资源.js"
+    },
+    {
+      "id": "hongniu_resource",
+      "title": "红牛资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.0.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/vodResource/红牛资源.js"
     }
   ]
 }
