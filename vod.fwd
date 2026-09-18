@@ -1,0 +1,25 @@
+{
+  "title": "VOD 资源站点",
+  "description": "自动生成的 VOD 单站点脚本清单",
+  "icon": "https://rexnow.tv/assets/rex-mark.png",
+  "widgets": [
+    {
+      "id": "baiduyun_resource",
+      "title": "百度云资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.0.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/百度云资源.js"
+    },
+    {
+      "id": "jisu_resource",
+      "title": "极速资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.0.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/极速资源.js"
+    }
+  ]
+}
