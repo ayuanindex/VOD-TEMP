@@ -1,6 +1,6 @@
 // TODO 资源名称修改
 const RESOURCE_SITES = `
-索尼资源,https://suoniapi.com/api.php/provide/vod/
+新浪点播,https://suoniapi.com/api.php/provide/vod/
 `;
 
 const CHINESE_NUM_MAP = {
@@ -10,8 +10,8 @@ const CHINESE_NUM_MAP = {
 
 // TODO: id 和 title 修改
 WidgetMetadata = {
-  id: "suoni_resource",
-  title: "索尼资源",
+  id: "xinlangdianbo_resource",
+  title: "新浪点播",
   icon: "https://rexnow.tv/assets/rex-mark.png",
   version: "1.0.0",
   requiredVersion: "0.0.1",
