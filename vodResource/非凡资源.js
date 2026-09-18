@@ -1,6 +1,6 @@
 // TODO 资源名称修改
 const RESOURCE_SITES = `
-红牛资源,https://www.hongniuzy2.com/api.php/provide/vod/
+非凡资源,https://cj.ffzyapi.com/api.php/provide/vod/
 `;
 
 const CHINESE_NUM_MAP = {
@@ -10,8 +10,8 @@ const CHINESE_NUM_MAP = {
 
 // TODO: id 和 title 修改
 WidgetMetadata = {
-  id: "hongniu_resource",
-  title: "红牛资源",
+  id: "feifan_resource",
+  title: "非凡资源",
   icon: "https://rexnow.tv/assets/rex-mark.png",
   version: "1.0.0",
   requiredVersion: "0.0.1",

@@ -38,6 +38,15 @@
       "version": "1.0.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/vodResource/红牛资源.js"
+    },
+    {
+      "id": "ffzy_resource",
+      "title": "非凡资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.0.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-Temp/refs/heads/main/vodResource/非凡资源.js"
     }
   ]
 }

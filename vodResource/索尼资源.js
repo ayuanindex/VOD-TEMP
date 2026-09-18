@@ -17,7 +17,7 @@ WidgetMetadata = {
   requiredVersion: "0.0.1",
   description: "获取聚合VOD影片资源",
   author: "ayuan",
-  site: "https://github.com/ayuanindex/VOD-Temp",
+  site: "https://github.com/ayuanindex/VOD-TEMP",
   globalParams: [
     {
       name: "multiSource",
