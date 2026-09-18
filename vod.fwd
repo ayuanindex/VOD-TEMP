@@ -56,6 +56,78 @@
       "version": "1.1.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/量子资源.js"
+    },
+    {
+      "id": "ikun_resource",
+      "title": "ikun资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/ikun资源.js"
+    },
+    {
+      "id": "guangsu_resource",
+      "title": "光速资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/光速资源.js"
+    },
+    {
+      "id": "ck_resource",
+      "title": "ck资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/ck资源.js"
+    },
+    {
+      "id": "uku_resource",
+      "title": "U酷资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/U酷资源.js"
+    },
+    {
+      "id": "shandian_resource",
+      "title": "闪电资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/闪电资源.js"
+    },
+    {
+      "id": "huhu_resource",
+      "title": "火狐资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/火狐资源.js"
+    },
+    {
+      "id": "huya_resource",
+      "title": "虎牙资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/虎牙资源.js"
+    },
+    {
+      "id": "yinghua_resource",
+      "title": "樱花资源",
+      "description": "获取聚合VOD影片资源",
+      "requiredVersion": "0.0.1",
+      "version": "1.1.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/樱花资源.js"
     }
   ]
 }
