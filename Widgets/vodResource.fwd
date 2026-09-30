@@ -5,7 +5,7 @@
   "widgets": [
     {
       "id": "baiduyun_resource",
-      "title": "百度云资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -14,7 +14,7 @@
     },
     {
       "id": "jisu_resource",
-      "title": "极速资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -23,7 +23,7 @@
     },
     {
       "id": "xinlangdianbo_resource",
-      "title": "新浪点播",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -32,7 +32,7 @@
     },
     {
       "id": "hongniu_resource",
-      "title": "红牛资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -41,7 +41,7 @@
     },
     {
       "id": "feifan_resource",
-      "title": "非凡资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -50,7 +50,7 @@
     },
     {
       "id": "liangzi_resource",
-      "title": "量子资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -59,7 +59,7 @@
     },
     {
       "id": "ikun_resource",
-      "title": "ikun资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -68,7 +68,7 @@
     },
     {
       "id": "guangsu_resource",
-      "title": "光速资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -77,7 +77,7 @@
     },
     {
       "id": "ck_resource",
-      "title": "ck资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -86,7 +86,7 @@
     },
     {
       "id": "uku_resource",
-      "title": "U酷资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -95,7 +95,7 @@
     },
     {
       "id": "shandian_resource",
-      "title": "闪电资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -104,7 +104,7 @@
     },
     {
       "id": "huhu_resource",
-      "title": "火狐资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -113,7 +113,7 @@
     },
     {
       "id": "huya_resource",
-      "title": "虎牙资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -122,7 +122,7 @@
     },
     {
       "id": "yinghua_resource",
-      "title": "樱花资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -131,7 +131,7 @@
     },
     {
       "id": "ys243_resource",
-      "title": "243影视",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -140,7 +140,7 @@
     },
     {
       "id": "kanju51_resource",
-      "title": "51看剧",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -149,7 +149,7 @@
     },
     {
       "id": "liuyou_resource",
-      "title": "6U资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -158,7 +158,7 @@
     },
     {
       "id": "hanju77_resource",
-      "title": "77韩剧",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -167,7 +167,7 @@
     },
     {
       "id": "blshipin_resource",
-      "title": "BL视频",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -176,7 +176,7 @@
     },
     {
       "id": "fox_resource",
-      "title": "FOX资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -185,7 +185,7 @@
     },
     {
       "id": "kkkanju_resource",
-      "title": "KK看剧",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -194,7 +194,7 @@
     },
     {
       "id": "banyung_resource",
-      "title": "banyung搬运工资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -203,7 +203,7 @@
     },
     {
       "id": "feisu2_resource",
-      "title": "fszy1飞速资源2",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -212,7 +212,7 @@
     },
     {
       "id": "mbomovie_resource",
-      "title": "mbomovie",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -221,7 +221,7 @@
     },
     {
       "id": "wujinapi2_resource",
-      "title": "wujinapi无尽",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -230,7 +230,7 @@
     },
     {
       "id": "wujinapi_resource",
-      "title": "wujinapi无尽资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -239,7 +239,7 @@
     },
     {
       "id": "bajieguancai_resource",
-      "title": "八戒官采",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -248,7 +248,7 @@
     },
     {
       "id": "wolong_resource",
-      "title": "卧龙资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -257,7 +257,7 @@
     },
     {
       "id": "tugou2345_resource",
-      "title": "土狗2345",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -266,7 +266,7 @@
     },
     {
       "id": "tugou360_resource",
-      "title": "土狗360",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -275,7 +275,7 @@
     },
     {
       "id": "aosika_resource",
-      "title": "奥斯卡资源网",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -284,7 +284,7 @@
     },
     {
       "id": "xiaoniao_resource",
-      "title": "小鸟动漫",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -293,7 +293,7 @@
     },
     {
       "id": "kuaikankezhan_resource",
-      "title": "快看客栈",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -302,7 +302,7 @@
     },
     {
       "id": "kuache_resource",
-      "title": "快车资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -311,7 +311,7 @@
     },
     {
       "id": "xinlang_resource",
-      "title": "新浪资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -320,7 +320,7 @@
     },
     {
       "id": "wujin_resource",
-      "title": "无尽资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -329,7 +329,7 @@
     },
     {
       "id": "bubugao_resource",
-      "title": "步步高资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -338,7 +338,7 @@
     },
     {
       "id": "huoxing_resource",
-      "title": "火星影视",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -347,7 +347,7 @@
     },
     {
       "id": "aikan1080_resource",
-      "title": "爱看1080",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -356,7 +356,7 @@
     },
     {
       "id": "dianshijia_resource",
-      "title": "电视家",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -365,7 +365,7 @@
     },
     {
       "id": "fanqie_resource",
-      "title": "番茄资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -374,7 +374,7 @@
     },
     {
       "id": "baitao_resource",
-      "title": "百淘影视",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -383,7 +383,7 @@
     },
     {
       "id": "pankankan_resource",
-      "title": "盘看看",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -392,7 +392,7 @@
     },
     {
       "id": "kankan_resource",
-      "title": "看看资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -401,7 +401,7 @@
     },
     {
       "id": "zhenbuka_resource",
-      "title": "真不卡",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -410,7 +410,7 @@
     },
     {
       "id": "hongniu_tw_resource",
-      "title": "紅牛資源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -419,7 +419,7 @@
     },
     {
       "id": "aike_resource",
-      "title": "艾克资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -428,7 +428,7 @@
     },
     {
       "id": "aidan_resource",
-      "title": "艾旦影视",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -437,7 +437,7 @@
     },
     {
       "id": "nuoxun_resource",
-      "title": "诺讯资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -446,7 +446,7 @@
     },
     {
       "id": "subo_resource",
-      "title": "速博资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -455,7 +455,7 @@
     },
     {
       "id": "liangzi_tw_resource",
-      "title": "量子資源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -464,7 +464,7 @@
     },
     {
       "id": "jinying_resource",
-      "title": "金鹰资源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -473,7 +473,7 @@
     },
     {
       "id": "shandian_tw_resource",
-      "title": "閃電資源",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -482,7 +482,7 @@
     },
     {
       "id": "yugege_resource",
-      "title": "雨哥哥影视",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -491,7 +491,7 @@
     },
     {
       "id": "piaohua_resource",
-      "title": "飘花电影",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -500,7 +500,7 @@
     },
     {
       "id": "piaoling_resource",
-      "title": "飘零影院",
+      "title": "VOD 资源站点",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
