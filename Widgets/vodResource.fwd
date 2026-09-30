@@ -211,24 +211,6 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/mbomovie.js"
     },
     {
-      "id": "wujinapi2_resource",
-      "title": "wujinapi无尽",
-      "description": "获取聚合VOD影片资源",
-      "requiredVersion": "0.0.1",
-      "version": "1.1.0",
-      "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/wujinapi无尽.js"
-    },
-    {
-      "id": "wujinapi_resource",
-      "title": "wujinapi无尽资源",
-      "description": "获取聚合VOD影片资源",
-      "requiredVersion": "0.0.1",
-      "version": "1.1.0",
-      "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/wujinapi无尽资源.js"
-    },
-    {
       "id": "bajieguancai_resource",
       "title": "八戒官采",
       "description": "获取聚合VOD影片资源",
@@ -398,15 +380,6 @@
       "version": "1.1.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/真不卡.js"
-    },
-    {
-      "id": "hongniu_tw_resource",
-      "title": "紅牛資源",
-      "description": "获取聚合VOD影片资源",
-      "requiredVersion": "0.0.1",
-      "version": "1.1.0",
-      "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/紅牛資源.js"
     },
     {
       "id": "aike_resource",
