@@ -10,8 +10,8 @@ const CHINESE_NUM_MAP = {
 
 // TODO: id 和 title 修改
 WidgetMetadata = {
-  id: resource,
-  title: "金鹰资源",
+  id: "jinying_resource",
+  title: "VOD 资源站点",
   icon: "https://rexnow.tv/assets/rex-mark.png",
   version: "1.0.0",
   requiredVersion: "0.0.1",

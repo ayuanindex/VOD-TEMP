@@ -4,8 +4,8 @@
   "icon": "https://rexnow.tv/assets/rex-mark.png",
   "widgets": [
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "baiduyun_resource",
+      "title": "百度云资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -13,8 +13,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/百度云资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "jisu_resource",
+      "title": "极速资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -22,8 +22,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/极速资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "xinlangdianbo_resource",
+      "title": "新浪点播",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -31,8 +31,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/新浪点播.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "hongniu_resource",
+      "title": "红牛资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -40,8 +40,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/红牛资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "feifan_resource",
+      "title": "非凡资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -49,8 +49,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/非凡资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "liangzi_resource",
+      "title": "量子资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -58,8 +58,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/量子资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "ikun_resource",
+      "title": "ikun资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -67,8 +67,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/ikun资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "guangsu_resource",
+      "title": "光速资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -76,8 +76,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/光速资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "ck_resource",
+      "title": "ck资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -85,8 +85,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/ck资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "uku_resource",
+      "title": "U酷资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -94,8 +94,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/U酷资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "shandian_resource",
+      "title": "闪电资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -103,8 +103,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/闪电资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "huhu_resource",
+      "title": "火狐资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -112,8 +112,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/火狐资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "huya_resource",
+      "title": "虎牙资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -121,8 +121,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/虎牙资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "yinghua_resource",
+      "title": "樱花资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -130,8 +130,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/樱花资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "ys243_resource",
+      "title": "243影视",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -139,8 +139,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/243影视.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "kanju51_resource",
+      "title": "51看剧",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -148,8 +148,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/51看剧.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "liuyou_resource",
+      "title": "6U资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -157,8 +157,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/6U资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "hanju77_resource",
+      "title": "77韩剧",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -166,8 +166,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/77韩剧.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "blshipin_resource",
+      "title": "BL视频",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -175,8 +175,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/BL视频.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "fox_resource",
+      "title": "FOX资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -184,8 +184,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/FOX资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "kkkanju_resource",
+      "title": "KK看剧",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -193,8 +193,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/KK看剧.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "banyung_resource",
+      "title": "banyung搬运工资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -202,8 +202,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/banyung搬运工资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "feisu2_resource",
+      "title": "fszy1飞速资源2",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -211,8 +211,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/fszy1飞速资源2.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "mbomovie_resource",
+      "title": "mbomovie",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -220,8 +220,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/mbomovie.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "wujinapi2_resource",
+      "title": "wujinapi无尽",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -229,8 +229,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/wujinapi无尽.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "wujinapi_resource",
+      "title": "wujinapi无尽资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -238,8 +238,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/wujinapi无尽资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "bajieguancai_resource",
+      "title": "八戒官采",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -247,8 +247,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/八戒官采.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "wolong_resource",
+      "title": "卧龙资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -256,8 +256,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/卧龙资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "tugou2345_resource",
+      "title": "土狗2345",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -265,8 +265,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/土狗2345.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "tugou360_resource",
+      "title": "土狗360",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -274,8 +274,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/土狗360.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "aosika_resource",
+      "title": "奥斯卡资源网",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -283,8 +283,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/奥斯卡资源网.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "xiaoniao_resource",
+      "title": "小鸟动漫",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -292,8 +292,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/小鸟动漫.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "kuaikankezhan_resource",
+      "title": "快看客栈",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -301,8 +301,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/快看客栈.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "kuache_resource",
+      "title": "快车资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -310,8 +310,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/快车资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "xinlang_resource",
+      "title": "新浪资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -319,8 +319,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/新浪资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "wujin_resource",
+      "title": "无尽资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -328,8 +328,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/无尽资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "bubugao_resource",
+      "title": "步步高资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -337,8 +337,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/步步高资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "huoxing_resource",
+      "title": "火星影视",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -346,8 +346,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/火星影视.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "aikan1080_resource",
+      "title": "爱看1080",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -355,8 +355,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/爱看1080.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "dianshijia_resource",
+      "title": "电视家",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -364,8 +364,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/电视家.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "fanqie_resource",
+      "title": "番茄资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -373,8 +373,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/番茄资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "baitao_resource",
+      "title": "百淘影视",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -382,8 +382,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/百淘影视.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "pankankan_resource",
+      "title": "盘看看",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -391,8 +391,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/盘看看.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "kankan_resource",
+      "title": "看看资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -400,8 +400,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/看看资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "zhenbuka_resource",
+      "title": "真不卡",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -409,8 +409,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/真不卡.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "hongniu_tw_resource",
+      "title": "紅牛資源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -418,8 +418,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/紅牛資源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "aike_resource",
+      "title": "艾克资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -427,8 +427,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/艾克资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "aidan_resource",
+      "title": "艾旦影视",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -436,8 +436,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/艾旦影视.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "nuoxun_resource",
+      "title": "诺讯资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -445,8 +445,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/诺讯资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "subo_resource",
+      "title": "速博资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -454,8 +454,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/速博资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "liangzi_tw_resource",
+      "title": "量子資源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -463,8 +463,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/量子資源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "jinying_resource",
+      "title": "金鹰资源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -472,8 +472,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/金鹰资源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "shandian_tw_resource",
+      "title": "閃電資源",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -481,8 +481,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/閃電資源.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "yugege_resource",
+      "title": "雨哥哥影视",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -490,8 +490,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/雨哥哥影视.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "piaohua_resource",
+      "title": "飘花电影",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
@@ -499,8 +499,8 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/飘花电影.js"
     },
     {
-      "id": "resource",
-      "title": "VOD 资源站点",
+      "id": "piaoling_resource",
+      "title": "飘零影院",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
       "version": "1.1.0",
