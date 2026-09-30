@@ -436,15 +436,6 @@
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/金鹰资源.js"
     },
     {
-      "id": "shandian_tw_resource",
-      "title": "閃電資源",
-      "description": "获取聚合VOD影片资源",
-      "requiredVersion": "0.0.1",
-      "version": "1.1.0",
-      "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/閃電資源.js"
-    },
-    {
       "id": "yugege_resource",
       "title": "雨哥哥影视",
       "description": "获取聚合VOD影片资源",
