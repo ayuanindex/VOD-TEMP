@@ -11,7 +11,7 @@ const CHINESE_NUM_MAP = {
 // TODO: id 和 title 修改
 WidgetMetadata = {
   id: "baiduyun_resource",
-  title: "VOD 资源站点",
+  title: "百度云资源",
   icon: "https://rexnow.tv/assets/rex-mark.png",
   version: "1.0.0",
   requiredVersion: "0.0.1",
