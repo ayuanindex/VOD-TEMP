@@ -169,7 +169,7 @@ async function loadResource(params) {
             return [];
           }
 
-          return extractPlayInfoForCache(item, "VOD 资源", type);
+          return extractPlayInfoForCache(item, site.title, type);
         });
       } catch (error) {
         return [];
