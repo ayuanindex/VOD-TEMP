@@ -6,312 +6,87 @@ const RESOURCE_SITES = `
 丫丫资源,https://cj.yayazy.net/api.php/provide/vod/
 `;
 
-const CHINESE_NUM_MAP = {
-  '一': 1,
-  '二': 2,
-  '三': 3,
-  '四': 4,
-  '五': 5,
-  '六': 6,
-  '七': 7,
-  '八': 8,
-  '九': 9,
-  '十': 10
-};
+const REQUEST_TIMEOUT = 8000;
+const MIN_MATCH_SCORE = 60;  // 可配置的最低匹配分数
+const MAX_SITE_CONCURRENCY = 10;  // 同时请求的资源站数量上限
 
-const PART_ORDER_MAP = {
-  '': 0,
-  '前': 1,
-  '前篇': 1,
-  '上': 1,
-  '上部': 1,
-  '上集': 1,
-  '上部分': 1,
-  '1': 1,
-  '一': 1,
-  'A': 1,
-  'a': 1,
-  '中': 2,
-  '中部': 2,
-  '中集': 2,
-  '中部分': 2,
-  '2': 2,
-  '二': 2,
-  'B': 2,
-  'b': 2,
-  '后': 3,
-  '后篇': 3,
-  '下': 3,
-  '下部': 3,
-  '下集': 3,
-  '下部分': 3,
-  '3': 3,
-  '三': 3,
-  'C': 3,
-  'c': 3,
-  '本': 4,
-  '全': 4,
-  '完整': 4,
-  '4': 4,
-  '四': 4,
-  '五': 5,
-  '5': 5,
-  '五部': 5
-};
 
-const SITE_HEALTH_KEY = 'vod_site_health_stats';
-const MAX_HEALTH_HISTORY = 20;
-const INITIAL_HEALTH_SCORE = 0.7;
-
+// ==================== Widget 元数据 ====================
 WidgetMetadata = {
   id: "resource_04",
   title: "资源04",
   icon: "",
-  version: "2.4.7",
+  version: "1.5.0",
   requiredVersion: "0.0.1",
-  description: "获取聚合VOD影视资源",
-  author: "AYuan",
-  site: "",
+  description: "VOD多资源站并发",
+  author: "MoYan",
   globalParams: [
-    { name: "VodData", title: "JSON或CSV格式的源配置", type: "input", value: RESOURCE_SITES },
-    { name: "excludeKeywords", title: "需要过滤的关键词（用逗号、空格或换行分隔，例如：特辑,加更,集锦）", type: "input", value: "" }
+    {
+      name: "VodData",
+      title: "资源站配置（每行一条：名称,接口地址；也支持 JSON 数组）",
+      type: "input",
+      value: RESOURCE_SITES
+    },
+    {
+      name: "excludeKeywords",
+      title: "需要过滤的关键词（用逗号、空格或换行分隔，例如：特辑,加更,集锦）",
+      type: "input",
+      value: ""
+    }
   ],
   modules: [
     {
       id: "loadResource",
-      title: "加载资源",
+      title: "加载荐片资源",
       functionName: "loadResource",
       type: "stream",
-      params: [],
+      params: []
     }
-  ],
+  ]
 };
 
-// --- 辅助工具函数 ---
-const isM3U8Url = (url) => url?.toLowerCase().includes('m3u8') || false;
+
+// ==================== 工具函数 ====================
+function logInfo(message, data = null) {
+  if (data) {
+    console.log(`[荐片] ${message}:`, JSON.stringify(data));
+  } else {
+    console.log(`[荐片] ${message}`);
+  }
+}
+
+function logError(message, error = null) {
+  if (error) {
+    console.error(`[荐片] ${message}:`, error.message || error);
+  } else {
+    console.error(`[荐片] ${message}`);
+  }
+}
+
+function cleanTitle(title) {
+  if (!title) return '';
+  return title.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, '').toLowerCase();
+}
 
 function extractBaseName(title) {
-  if (!title)
-    return '';
+  if (!title) return '';
   let cleaned = title.replace(/[\(\[（【][^\)\]）】]*[\)\]）】]/g, '');
   const separators = /[:：\-—\s]+/;
   const parts = cleaned.split(separators);
   return parts[0]?.trim() || cleaned.trim();
 }
 
-function cleanTitle(title) {
-  if (!title)
-    return '';
-  return title.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, '').toLowerCase();
+function parseExcludeKeywords(input) {
+  if (!input || typeof input !== 'string') return [];
+  const keywords = input.split(/[,\s\n\t]+/).filter(k => k.trim().length > 0);
+  return [...new Set(keywords)];
 }
 
-function extractSeasonInfo(seriesName) {
-  if (!seriesName)
-    return { baseName: seriesName, seasonNumber: 1, cleanBaseName: '' };
-
-  let cleanedName = seriesName;
-  cleanedName = cleanedName.replace(/[\(\[（【][^\)\]）】]*[\)\]）】]/g, '');
-
-  let baseName = cleanedName;
-  let seasonNumber = 1;
-
-  const chineseMatch = cleanedName.match(/第([一二三四五六七八九十\d]+)[季部]/);
-  if (chineseMatch) {
-    const val = chineseMatch[1];
-    seasonNumber = CHINESE_NUM_MAP[val] || parseInt(val) || 1;
-    baseName = cleanedName.replace(/第[一二三四五六七八九十\d]+[季部]/, '').trim();
-  } else {
-    const digitMatch = cleanedName.match(/(.+?)(?:[ _\-]?)(\d{1,4})$/);
-    if (digitMatch) {
-      const possibleBase = digitMatch[1].trim();
-      const possibleSeason = parseInt(digitMatch[2]);
-      if (possibleBase && possibleSeason > 0) {
-        baseName = possibleBase;
-        seasonNumber = possibleSeason;
-      }
-    }
-  }
-
-  baseName = extractBaseName(baseName);
-  const cleanBaseName = cleanTitle(baseName);
-
-  return { baseName, seasonNumber, cleanBaseName };
+function normalizeSiteUrl(url) {
+  return (url || '').trim().replace(/^https?:\/\//, '').replace(/\/+$/, '').toLowerCase();
 }
 
-function parseVarietyEpisode(epName) {
-  if (!epName)
-    return null;
-  const epNameClean = epName.trim();
-
-  if (epNameClean.includes('先导')) {
-    return { seasonNum: 0, partOrder: 0, subNumber: 0, originalSuffix: '', rawName: epNameClean, type: 'pilot', hasPeriod: false, isValid: true };
-  }
-
-  let specialMatch = epNameClean.match(/(?:特别篇|加更)[\s\-]*(\d+)/);
-  if (specialMatch) {
-    const specialNum = parseInt(specialMatch[1]);
-    if (specialNum > 3000)
-      return { isValid: false };
-    return { seasonNum: 1000 + specialNum, partOrder: 0, subNumber: 0, originalSuffix: '', rawName: epNameClean, type: 'special', hasPeriod: false, isValid: true };
-  }
-
-  // 匹配“第X期（数字）”括号格式
-  let parenMatch = epNameClean.match(/第\s*(\d+)\s*期\s*[（(]([\d一二三四五六七八九十]+)[）)]/);
-  if (parenMatch) {
-    const seasonNum = parseInt(parenMatch[1]);
-    if (seasonNum > 999)
-      return { isValid: false };
-    let subStr = parenMatch[2];
-    let subNumber = CHINESE_NUM_MAP[subStr] || parseInt(subStr) || 0;
-    let originalSuffix = subStr;
-    return { seasonNum, partOrder: 0, subNumber, originalSuffix, rawName: epNameClean, type: 'sub', hasPeriod: true, isValid: true };
-  }
-
-  // 匹配“第X期Y”无括号格式
-  let subMatch = epNameClean.match(/第\s*(\d+)\s*期\s*([\d一二三四五六七八九十]+)/);
-  if (subMatch) {
-    const seasonNum = parseInt(subMatch[1]);
-    if (seasonNum > 999)
-      return { isValid: false };
-    let subStr = subMatch[2];
-    let subNumber = CHINESE_NUM_MAP[subStr] || parseInt(subStr) || 0;
-    let originalSuffix = subStr;
-    return { seasonNum, partOrder: 0, subNumber, originalSuffix, rawName: epNameClean, type: 'sub', hasPeriod: true, isValid: true };
-  }
-
-  // 匹配“第X期[上下中...]”格式
-  let match = epNameClean.match(/第\s*(\d+)\s*期[\s\-\(（]*([上下中一二三四五六七八九十\d前半后本]*)[\s\)）\-]*/);
-  if (match) {
-    const seasonNum = parseInt(match[1]);
-    if (seasonNum > 999)
-      return { isValid: false };
-    let partKey = match[2]?.trim() || '';
-    const partOrder = PART_ORDER_MAP[partKey] !== undefined ? PART_ORDER_MAP[partKey] : (parseInt(partKey) || 0);
-    let originalSuffix = partKey;
-    return { seasonNum, partOrder, subNumber: 0, originalSuffix, rawName: epNameClean, type: 'standard', hasPeriod: true, isValid: true };
-  }
-
-  // 匹配“第X集[上下中...]”格式（电视剧，无期数）
-  let setMatch = epNameClean.match(/第\s*(\d+)\s*集[\s\-\(（]*([上下中一二三四五六七八九十\d前半后本]*)[\s\)）\-]*/);
-  if (setMatch) {
-    const seasonNum = parseInt(setMatch[1]);
-    if (seasonNum > 999)
-      return { isValid: false };
-    let partKey = setMatch[2]?.trim() || '';
-    const partOrder = PART_ORDER_MAP[partKey] !== undefined ? PART_ORDER_MAP[partKey] : (parseInt(partKey) || 0);
-    let originalSuffix = partKey;
-    return { seasonNum, partOrder, subNumber: 0, originalSuffix, rawName: epNameClean, type: 'standard', hasPeriod: false, isValid: true };
-  }
-
-  return { isValid: false };
-}
-
-function extractFeatureTag(vod_remarks, epName, quality = '') {
-  if (!vod_remarks)
-    vod_remarks = '';
-  if (!epName)
-    epName = '';
-  if (!quality)
-    quality = '';
-
-  const remark = vod_remarks.toLowerCase();
-  const episode = epName.toLowerCase();
-  const qual = quality.toLowerCase();
-
-  const nonTheatricalKeywords = [
-    'tc', 'tc版', '抢先版', '枪版', '尝鲜版', '非正式版', 'hdts', 'hdts版', 'hdtc', 'hdtc版', 'ts', 'ts版',
-    'cam', 'cam版', 'scr', 'scr版', 'dvdscr', 'web-dl', '低清', '高清tc', '高清抢先', '内部版', '预映版'
-  ];
-
-  const allText = `${remark} ${episode} ${qual}`;
-  for (const keyword of nonTheatricalKeywords) {
-    if (allText.includes(keyword)) {
-      if (qual.includes('tc') || qual.includes('抢先') || remark.includes('tc') || remark.includes('抢先')) {
-        return '抢先版';
-      }
-      return '非正片';
-    }
-  }
-
-  if (remark.includes('纯享') || episode.includes('纯享'))
-    return '纯享';
-  if (remark.includes('番外') || episode.includes('番外'))
-    return '番外';
-  if (remark.includes('花絮') || episode.includes('花絮'))
-    return '花絮';
-  if (remark.includes('特辑') || episode.includes('特辑'))
-    return '特辑';
-  if (remark.includes('影视解说') || episode.includes('影视解说') || remark.includes('影视频说') || episode.includes('影视频说') || remark.includes('解说') ||
-    episode.includes('解说'))
-    return '解说';
-
-  return '正片';
-}
-
-function extractLanguageFromRemarks(vod_remarks, quality = '') {
-  if (!vod_remarks)
-    vod_remarks = '';
-  if (!quality)
-    quality = '';
-
-  const combinedText = (vod_remarks + ' ' + quality).toLowerCase();
-
-  const languageKeywords = {
-    '国语': ['国语', '中文', '普通话', '大陆', '内地', '中字', '中文配音', '国配', '普通话版', '国语版'],
-    '粤语': ['粤语', '粤', '广东话', '粤语配音'],
-    '英语': ['英语', '英', '英文', '英语配音', '原声', 'english', '英字'],
-    '日语': ['日语', '日', '日文', '日本', '日语配音', '日字'],
-    '韩语': ['韩语', '韩', '韩文', '韩国', '韩语配音', '韩字'],
-    '法语': ['法语', '法', '法文', '法国', '法语配音'],
-    '多国': ['多国', '多语', '双语', '多语言', '多音轨']
-  };
-
-  for (const [lang, keywords] of Object.entries(languageKeywords)) {
-    for (const keyword of keywords) {
-      if (combinedText.includes(keyword.toLowerCase())) {
-        return lang;
-      }
-    }
-  }
-
-  return '';
-}
-
-function generateMovieDescription(vod_name, vod_remarks, quality, featureTag, sourceName) {
-  let cleanMovieName =
-    vod_name.replace(/[（(][^）)]*[）)]/g, '').replace(/[\(\[][^\)\]]*[\)\]]/g, '').replace(/【[^】]*】/g, '').replace(/\[[^\]]*\]/g, '').replace(/\s+/g, ' ').trim();
-
-  const descriptionParts = [cleanMovieName];
-
-  if (featureTag !== '解说') {
-    const languageTag = extractLanguageFromRemarks(vod_remarks, quality);
-    if (languageTag === '国语') {
-      descriptionParts.push(`[${languageTag}]`);
-    }
-  }
-
-  if (featureTag === '抢先版') {
-    descriptionParts.push(`[抢先]`);
-  } else if (featureTag === '解说') {
-    descriptionParts.push(`[解说]`);
-  }
-
-  return descriptionParts.join(' ');
-}
-
-function toChineseNumber(numStr) {
-  const map = { '1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六', '7': '七', '8': '八', '9': '九' };
-  if (map[numStr])
-    return map[numStr];
-  if (['一', '二', '三', '四', '五', '六', '七', '八', '九'].includes(numStr))
-    return numStr;
-  const num = parseInt(numStr, 10);
-  if (!isNaN(num) && num >= 1 && num <= 9) {
-    return map[num.toString()];
-  }
-  return numStr;
-}
-
+// 支持 CSV（每行：名称,接口地址）或 JSON 数组（[{title,url}] / [{name,value}]）
 function parseResourceSites(VodData) {
   const parseLine = (line) => {
     const [title, value] = line.split(',').map(s => s.trim());
@@ -320,567 +95,282 @@ function parseResourceSites(VodData) {
     }
     return null;
   };
+
+  const dedupe = (sites) => {
+    const seen = new Set();
+    return sites.filter(s => {
+      const key = normalizeSiteUrl(s.value);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  };
+
   try {
-    const trimmed = VodData?.trim() || "";
+    const trimmed = VodData?.trim() || '';
     if (trimmed.startsWith('[') || trimmed.startsWith('{')) {
-      return JSON.parse(trimmed).map(s => ({ title: s.title || s.name, value: s.url || s.value })).filter(s => s.title && s.value);
+      return dedupe(JSON.parse(trimmed).map(s => ({ title: s.title || s.name, value: s.url || s.value })).filter(s => s.title && s.value));
     }
-    return trimmed.split('\n').map(parseLine).filter(Boolean);
+    return dedupe(trimmed.split('\n').map(parseLine).filter(Boolean));
   } catch (e) {
-    return RESOURCE_SITES.trim().split('\n').map(parseLine).filter(Boolean);
+    return dedupe(RESOURCE_SITES.trim().split('\n').map(parseLine).filter(Boolean));
   }
 }
 
-function extractPlayInfoForCache(item, siteTitle, type, excludeKeywords = []) {
-  const { vod_name, vod_play_url, vod_play_from, vod_remarks = '' } = item;
-  if (!vod_name || !vod_play_url)
-    return [];
+// ==================== 请求：多资源站并发 ====================
 
-  const playSources = vod_play_url.replace(/#+$/, '').split('$$$');
-  const sourceNames = (vod_play_from || '').split('$$$');
+// 并发请求多个资源站，任一站点失败不影响其他站点
+async function runTasks(tasks, limit) {
+  const results = [];
+  let index = 0;
 
-  return playSources.flatMap((playSource, i) => {
-    const sourceName = sourceNames[i] || '默认源';
-    const isTV = playSource.includes('#');
-    const results = [];
-
-    if (type === 'tv' && isTV) {
-      const episodes = playSource.split('#').filter(Boolean);
-
-      episodes.forEach(ep => {
-        const [rawEpName, url] = ep.split('$');
-        if (url && isM3U8Url(url)) {
-          const epNameClean = rawEpName.trim();
-
-          const shouldExclude = excludeKeywords.some(keyword => epNameClean.includes(keyword) || vod_remarks.includes(keyword));
-          if (shouldExclude)
-            return;
-
-          const parsedInfo = parseVarietyEpisode(epNameClean);
-          if (!parsedInfo || !parsedInfo.isValid)
-            return;
-
-          const episodeInfoForSort = {
-            seasonNum: parsedInfo.seasonNum,
-            partOrder: parsedInfo.partOrder,
-            subNumber: parsedInfo.subNumber || 0,
-            originalSuffix: parsedInfo.originalSuffix || '',
-            rawName: epNameClean,
-            type: parsedInfo.type,
-            hasPeriod: parsedInfo.hasPeriod
-          };
-          const featureTag = extractFeatureTag(vod_remarks, epNameClean);
-          const healthScore = getSiteHealthManager().getHealthScore(siteTitle);
-
-          results.push({
-            name: siteTitle,
-            description: `${vod_name} - ${rawEpName}${vod_remarks ? ' - ' + vod_remarks : ''} - [${sourceName}]`,
-            url: url.trim(),
-            _epInfo: episodeInfoForSort,
-            _rawEpName: epNameClean,
-            _originalEpForFilter: parsedInfo.seasonNum,
-            _vodName: vod_name,
-            _featureTag: featureTag,
-            _sourceName: sourceName,
-            _healthScore: healthScore,
-            _siteTitle: siteTitle
-          });
-        }
-      });
-    } else if (type === 'movie' && !isTV) {
-      const firstM3U8 = playSource.split('#').find(v => isM3U8Url(v.split('$')[1]));
-      if (firstM3U8) {
-        const [quality, url] = firstM3U8.split('$');
-
-        const shouldExclude = excludeKeywords.some(keyword => vod_name.includes(keyword) || vod_remarks.includes(keyword) || quality.includes(keyword));
-        if (shouldExclude)
-          return results;
-
-        const languageTag = extractLanguageFromRemarks(vod_remarks, quality);
-        const featureTag = extractFeatureTag(vod_remarks, vod_name, quality);
-        const healthScore = getSiteHealthManager().getHealthScore(siteTitle);
-        const movieDescription = generateMovieDescription(vod_name, vod_remarks, quality, featureTag, sourceName);
-
-        results.push({
-          name: siteTitle,
-          description: movieDescription,
-          url: url.trim(),
-          _featureTag: featureTag,
-          _languageTag: languageTag,
-          _healthScore: healthScore,
-          _siteTitle: siteTitle
-        });
+  const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
+    while (index < tasks.length) {
+      const current = index++;
+      try {
+        results[current] = await tasks[current]();
+      } catch (e) {
+        results[current] = null;
       }
     }
-    return results;
   });
+
+  await Promise.all(workers);
+  return results;
 }
 
-function extractSubNumberText(rawName) {
-  const match = rawName.match(/第\s*\d+\s*期\s*([\d一二三四五六七八九十]+)/);
-  if (match) {
-    return match[1];
+async function searchSites(sites, keyword) {
+  const tasks = sites.map(site => async () => {
+    try {
+      const response = await Widget.http.get(site.value, {
+        params: { ac: "detail", wd: keyword },
+        timeout: REQUEST_TIMEOUT
+      });
+      const list = response?.data?.list;
+      if (!Array.isArray(list)) return null;
+      logInfo(`资源站 ${site.title} 返回 ${list.length} 条`);
+      return { site, list };
+    } catch (e) {
+      logError(`资源站请求失败: ${site.title}`, e);
+      return null;
+    }
+  });
+
+  const results = await runTasks(tasks, MAX_SITE_CONCURRENCY);
+  return results.filter(r => r && r.list.length > 0);
+}
+
+// ==================== 匹配 ====================
+
+function calculateMatchScore(searchName, itemName) {
+  const cleanSearch = cleanTitle(searchName);
+  const cleanItem = cleanTitle(itemName);
+
+  if (cleanItem === cleanSearch) return 100;
+  if (cleanItem.includes(cleanSearch)) return 70;
+  if (cleanSearch.includes(cleanItem)) return 50;
+
+  // 逐字符匹配
+  let matchCount = 0;
+  for (let i = 0; i < cleanSearch.length; i++) {
+    if (cleanItem.includes(cleanSearch[i])) matchCount++;
   }
+  return (matchCount / cleanSearch.length) * 30;
+}
+
+function parseEpisodeNumber(rawName) {
+  if (!rawName) return null;
+  const name = rawName.trim();
+  const cnMatch = name.match(/第\s*(\d+)\s*[集话期]/);
+  if (cnMatch) return parseInt(cnMatch[1]);
+  const epMatch = name.match(/^[Ee][Pp]?\s*(\d+)$/);
+  if (epMatch) return parseInt(epMatch[1]);
+  if (/^\d+$/.test(name)) return parseInt(name);
   return null;
 }
 
-function getNormalizedGroupKey(info) {
-  if (info.seasonNum === 0) {
-    return `pilot_${info.partOrder}_${info.subNumber}_${info.type}`;
-  }
-  let normalizedType = 0;
-  if (info.subNumber > 0) {
-    normalizedType = info.subNumber;
-  } else if (info.partOrder > 0) {
-    normalizedType = info.partOrder;
-  }
-  if (normalizedType === 0) {
-    return `${info.seasonNum}_main`;
-  } else if (normalizedType === 1) {
-    return `${info.seasonNum}_main`;
-  } else if (normalizedType <= 4) {
-    return `${info.seasonNum}_part_${normalizedType}`;
-  } else {
-    return `${info.seasonNum}_sub_${info.subNumber}`;
-  }
+function isPlayableUrl(url) {
+  return !!url && (url.toLowerCase().includes('.m3u8') || url.toLowerCase().includes('.mp4'));
 }
 
-function assignContinuousEpisodeNumbers(resources, originalSeriesName) {
-  const tvResources = resources.filter(r => r._epInfo);
-  const nonTvResources = resources.filter(r => !r._epInfo);
+function isSkippedSource(sourceName) {
+  const lower = (sourceName || '').toLowerCase();
+  return lower.includes('vip') || lower.includes('ftp') || sourceName === '常规线路';
+}
 
-  if (tvResources.length === 0)
-    return resources;
+// ==================== 播放源解析 ====================
 
-  // 清理用户输入的剧名（移除括号）
-  let baseSeriesName =
-    (originalSeriesName || '').replace(/[（(][^）)]*[）)]/g, '').replace(/[\(\[][^\)\]]*[\)\]]/g, '').replace(/【[^】]*】/g, '').replace(/\[[^\]]*\]/g, '').trim();
+function extractPlayInfo(item, vod_name, type, targetEpNum, excludeKeywords) {
+  const { vod_play_url, vod_play_from, vod_remarks = '' } = item;
+  if (!vod_play_url) return [];
 
-  const groupKeySet = new Set();
-  tvResources.forEach(res => {
-    const key = getNormalizedGroupKey(res._epInfo);
-    groupKeySet.add(key);
-  });
+  const playSources = vod_play_url.replace(/#+$/, '').split('$$$');
+  const sourceNames = (vod_play_from || '').split('$$$');
+  const playResources = [];
+  let resourceIndex = 0;
 
-  const pilotKeys = Array.from(groupKeySet).filter(k => k.startsWith('pilot_'));
-  const normalKeys = Array.from(groupKeySet).filter(k => !k.startsWith('pilot_'));
+  playSources.forEach((playSource, i) => {
+    const sourceName = sourceNames[i]?.trim() || '默认线路';
+    if (isSkippedSource(sourceName)) return;
 
-  normalKeys.sort((a, b) => {
-    const [seasonA, typeA, numA] = a.split('_');
-    const [seasonB, typeB, numB] = b.split('_');
-    const sA = parseInt(seasonA), sB = parseInt(seasonB);
-    if (sA !== sB)
-      return sA - sB;
-    if (typeA === 'main' && typeB !== 'main')
-      return -1;
-    if (typeA !== 'main' && typeB === 'main')
-      return 1;
-    const nA = parseInt(numA) || 0;
-    const nB = parseInt(numB) || 0;
-    if (nA !== nB)
-      return nA - nB;
-    return 0;
-  });
+    const episodes = playSource.split('#').filter(Boolean);
 
-  const groupToEpisode = new Map();
-  let nextEpisode = 1;
-  for (const key of normalKeys) {
-    groupToEpisode.set(key, nextEpisode++);
-  }
-  for (const key of pilotKeys) {
-    groupToEpisode.set(key, 0);
-  }
+    episodes.forEach(ep => {
+      const splitIndex = ep.indexOf('$');
+      if (splitIndex === -1) return;
 
-  const finalResources = tvResources.map(res => {
-    const info = res._epInfo;
-    const groupKey = getNormalizedGroupKey(info);
-    const episodeNumber = groupToEpisode.get(groupKey);
+      const rawEpName = ep.slice(0, splitIndex).trim();
+      let url = ep.slice(splitIndex + 1).trim();
+      if (!isPlayableUrl(url)) return;
 
-    // 从资源名提取季数
-    const { seasonNumber } = extractSeasonInfo(res._vodName);
-    let seasonText = '';
-    if (seasonNumber > 0) {
-      const seasonChinese = toChineseNumber(seasonNumber.toString());
-      seasonText = ` 第${seasonChinese}季`;
-    }
-    const cleanVodName = baseSeriesName + seasonText;
+      try { url = decodeURIComponent(url); } catch (e) { }
 
-    const episodePart = `第${episodeNumber}集`;
+      const shouldExclude = excludeKeywords.some(k => rawEpName.includes(k) || vod_remarks.includes(k));
+      if (shouldExclude) return;
 
-    // 只有在明确匹配到“第X期”时才显示期数部分
-    let periodPart = '';
-    if (info.hasPeriod === true) {
-      let suffix = info.originalSuffix || '';
-      if (suffix) {
-        const num = parseInt(suffix, 10);
-        if (!isNaN(num) && num >= 1 && num <= 9) {
-          suffix = toChineseNumber(suffix);
-        }
-        periodPart = `第${info.seasonNum}期 ${suffix}`;
-      } else {
-        periodPart = `第${info.seasonNum}期`;
+      const episodeNum = parseEpisodeNumber(rawEpName);
+
+      // 指定集数时只保留匹配项
+      if (targetEpNum !== null && targetEpNum !== undefined) {
+        if (episodeNum !== targetEpNum) return;
       }
-    }
 
-    // 有上下部或子分集的资源强制标签为“正片”
-    let displayTag = res._featureTag;
-    if (info.partOrder > 0 || info.subNumber > 0) {
-      displayTag = '正片';
-    }
-
-    const descriptionParts = [cleanVodName];
-    if (episodePart)
-      descriptionParts.push(episodePart);
-    if (periodPart)
-      descriptionParts.push(periodPart);
-    if (displayTag)
-      descriptionParts.push(`[${displayTag}]`);
-    const newDescription = descriptionParts.join(' ');
-
-    return { ...res, _ep: episodeNumber, description: newDescription };
-  });
-
-  return [...finalResources, ...nonTvResources];
-}
-
-function sortByConnectionHealth(resources) {
-  if (resources.length <= 1)
-    return resources;
-
-  const groupedResources = {};
-  resources.forEach(resource => {
-    const key = `${resource._vodName || 'unknown'}_${resource._ep || 0}`;
-    if (!groupedResources[key])
-      groupedResources[key] = [];
-    groupedResources[key].push(resource);
-  });
-
-  const sortedResources = [];
-  Object.values(groupedResources).forEach(group => {
-    group.sort((a, b) => (b._healthScore || 0) - (a._healthScore || 0));
-    sortedResources.push(...group);
-  });
-  return sortedResources;
-}
-
-// ======================== 懒加载健康度管理器 ========================
-let siteHealthManagerInstance = null;
-
-class SiteHealthManager {
-  constructor() {
-    this.healthStats = {};
-    this.loadHealthStats();
-  }
-  loadHealthStats() {
-    try {
-      const stats = Widget.storage.get(SITE_HEALTH_KEY);
-      if (stats && typeof stats === 'object')
-        this.healthStats = stats;
-    } catch (e) {
-      this.healthStats = {};
-    }
-  }
-  saveHealthStats() {
-    try {
-      Widget.storage.set(SITE_HEALTH_KEY, this.healthStats);
-    } catch (e) {
-    }
-  }
-  recordRequest(siteTitle, responseTime, success, dataSize = 0) {
-    if (!siteTitle)
-      return;
-    if (!this.healthStats[siteTitle]) {
-      this.healthStats[siteTitle] = {
-        totalRequests: 0,
-        successRequests: 0,
-        totalResponseTime: 0,
-        totalDataSize: 0,
-        recentHistory: [],
-        healthScore: INITIAL_HEALTH_SCORE,
-        lastUpdated: Date.now()
-      };
-    }
-    const stats = this.healthStats[siteTitle];
-    stats.totalRequests++;
-    if (success) {
-      stats.successRequests++;
-      stats.totalResponseTime += responseTime;
-      stats.totalDataSize += dataSize;
-      stats.recentHistory.push({ timestamp: Date.now(), responseTime, success: true, dataSize });
-    } else {
-      stats.recentHistory.push({ timestamp: Date.now(), responseTime, success: false, dataSize: 0 });
-    }
-    if (stats.recentHistory.length > MAX_HEALTH_HISTORY)
-      stats.recentHistory = stats.recentHistory.slice(-MAX_HEALTH_HISTORY);
-    this.calculateHealthScore(siteTitle);
-    stats.lastUpdated = Date.now();
-    this.saveHealthStats();
-  }
-  calculateHealthScore(siteTitle) {
-    const stats = this.healthStats[siteTitle];
-    if (!stats || stats.totalRequests === 0) {
-      if (stats)
-        stats.healthScore = INITIAL_HEALTH_SCORE;
-      return;
-    }
-    const successRate = stats.successRequests / stats.totalRequests;
-    const avgResponseTime = stats.successRequests > 0 ? stats.totalResponseTime / stats.successRequests : 10000;
-    let recentSuccessRate = 0, recentCount = 0;
-    const oneHourAgo = Date.now() - 3600000;
-    stats.recentHistory.forEach(record => {
-      if (record.timestamp > oneHourAgo) {
-        recentCount++;
-        if (record.success)
-          recentSuccessRate++;
+      // 构建描述
+      let description = vod_name;
+      if (episodeNum) {
+        description = `${vod_name} 第${episodeNum}集`;
+      } else if (rawEpName && !['正片', '播放'].includes(rawEpName)) {
+        const cleanEpName = rawEpName.replace(/[<>"'\\]/g, '').trim();
+        if (cleanEpName) description = `${vod_name} - ${cleanEpName}`;
       }
-    });
-    recentSuccessRate = recentCount > 0 ? recentSuccessRate / recentCount : successRate;
-    const responseTimeScore = Math.max(0, Math.min(1, 1 - (avgResponseTime / 5000)));
-    stats.healthScore = (recentSuccessRate * 0.6) + (successRate * 0.3) + (responseTimeScore * 0.1);
-    stats.healthScore = Math.max(0, Math.min(1, stats.healthScore));
-  }
-  getHealthScore(siteTitle) {
-    if (!this.healthStats[siteTitle])
-      return INITIAL_HEALTH_SCORE;
-    const stats = this.healthStats[siteTitle];
-    const hoursSinceUpdate = (Date.now() - stats.lastUpdated) / 3600000;
-    if (hoursSinceUpdate > 24)
-      return stats.healthScore * Math.max(0, 1 - (hoursSinceUpdate - 24) * 0.1);
-    return stats.healthScore;
-  }
-  getSiteRankings() {
-    const rankings = [];
-    for (const [siteTitle, stats] of Object.entries(this.healthStats)) {
-      rankings.push({
-        siteTitle,
-        healthScore: this.getHealthScore(siteTitle),
-        successRate: stats.totalRequests > 0 ? stats.successRequests / stats.totalRequests : 0,
-        avgResponseTime: stats.successRequests > 0 ? stats.totalResponseTime / stats.successRequests : 0,
-        totalRequests: stats.totalRequests
+
+      if (sourceName && !sourceName.includes('默认')) {
+        description = `${description} [${sourceName}]`;
+      }
+
+      resourceIndex++;
+      playResources.push({
+        id: `${item.vod_id}_${sourceName}_${episodeNum || resourceIndex}_${Date.now()}_${resourceIndex}`,
+        name: sourceName,
+        type: type === 'movie' ? 'movie' : 'tv',
+        description: description,
+        url: url,
+        _episode: episodeNum
       });
-    }
-    rankings.sort((a, b) => b.healthScore - a.healthScore);
-    return rankings;
-  }
+    });
+  });
+
+  return playResources;
 }
 
-function getSiteHealthManager() {
-  if (!siteHealthManagerInstance) {
-    siteHealthManagerInstance = new SiteHealthManager();
-  }
-  return siteHealthManagerInstance;
-}
+// ==================== 统一入口 ====================
 
-function parseExcludeKeywords(input) {
-  if (!input || typeof input !== 'string')
-    return [];
-  const keywords = input.split(/[,\s\n\t]+/).filter(k => k.trim().length > 0);
-  return [...new Set(keywords)];
-}
-
-// ======================== 核心：统一匹配逻辑 ========================
 async function loadResource(params) {
-  const { seriesName, type = 'tv', season, episode, VodData, excludeKeywords: userExcludeKeywords = "" } = params;
-  if (!seriesName)
+  let seriesName = params?.seriesName || params?.title || params?.name || params?.keyword;
+  let type = params?.type === 'movie' ? 'movie' : 'tv';
+  let episode = params?.episode ? parseInt(params.episode) : null;
+
+  logInfo(`被动触发 - 搜索: ${seriesName}, 类型: ${type}, 集: ${episode}`);
+
+  if (!seriesName) {
+    logError('缺少系列名称');
     return [];
-
-  const excludeKeywords = parseExcludeKeywords(userExcludeKeywords);
-  const resourceSites = parseResourceSites(VodData);
-
-  const fullCleanOriginal = cleanTitle(seriesName);
-  const baseName = extractBaseName(seriesName);
-  const cleanBaseName = cleanTitle(baseName);
-
-  let requestNumber = null;
-  let hasNumberSuffix = false;
-  const numberMatch = cleanBaseName.match(/^(.+?)(\d+)$/);
-  if (numberMatch) {
-    requestNumber = numberMatch[2];
-    hasNumberSuffix = true;
   }
 
-  let searchKeyword;
-  if (hasNumberSuffix) {
-    searchKeyword = numberMatch[1] + numberMatch[2];
-  } else {
-    searchKeyword = seriesName;
+  const resourceSites = parseResourceSites(params?.VodData);
+  if (!resourceSites.length) {
+    logError('未配置任何资源站');
+    return [];
+  }
+  logInfo(`资源站数量: ${resourceSites.length}`);
+
+  const excludeKeywords = parseExcludeKeywords(params?.excludeKeywords);
+  const searchKeyword = extractBaseName(seriesName);
+  logInfo(`搜索关键词: ${searchKeyword}`);
+
+  // 并发请求所有资源站
+  const siteResults = await searchSites(resourceSites, searchKeyword);
+  if (!siteResults.length) {
+    logInfo(`所有资源站均无结果: ${searchKeyword}`);
+    return [];
   }
 
-  let baseKeyword = cleanBaseName.replace(/\d+$/, '');
+  // 各站内按标题打分，保留达标的结果
+  const cleanSearchName = cleanTitle(searchKeyword);
+  const matchedItems = [];
 
-  let targetSeason = season ? parseInt(season) : null;
-  if (targetSeason === null && type === 'tv') {
-    const seasonInfo = extractSeasonInfo(seriesName);
-    targetSeason = seasonInfo.seasonNumber;
-  }
-  const targetEpisode = episode ? parseInt(episode) : null;
+  siteResults.forEach(({ site, list }) => {
+    const candidates = [];
+    let best = null;
+    let bestScore = 0;
 
-  const cacheKey = `vod_cache_${searchKeyword}_s${targetSeason}_${type}`;
-  let allResources = [];
-
-  try {
-    const cached = Widget.storage.get(cacheKey);
-    if (cached && Array.isArray(cached))
-      allResources = cached;
-  } catch (e) {
-  }
-
-  const fetchFromSites = async (keyword, matchMode) => {
-    const tasks = resourceSites.map(async (site) => {
-      const startTime = Date.now();
-      try {
-        const response = await Widget.http.get(site.value, { params: { ac: "detail", wd: keyword }, timeout: 8000 });
-        const endTime = Date.now();
-        getSiteHealthManager().recordRequest(site.title, endTime - startTime, true, JSON.stringify(response.data).length);
-
-        const list = response?.data?.list;
-        if (!Array.isArray(list))
-          return [];
-
-        return list.flatMap(item => {
-          const cleanItemFull = cleanTitle(item.vod_name);
-
-          let shouldMatch = false;
-          if (matchMode === 'first') {
-            const cleanKeyword = cleanTitle(keyword);
-            if (type === 'tv' && hasNumberSuffix) {
-              // 电视剧有数字后缀：要求资源名以 cleanKeyword 开头，并独立数字校验
-              if (cleanItemFull.startsWith(cleanKeyword)) {
-                shouldMatch = true;
-                if (requestNumber) {
-                  const numberPattern = new RegExp(`(^|[^\\d])${requestNumber}($|[^\\d])`);
-                  if (!numberPattern.test(cleanItemFull)) {
-                    shouldMatch = false;
-                  }
-                }
-              }
-            } else if (type === 'tv' && !hasNumberSuffix) {
-              // 电视剧无数字后缀：精确相等匹配，或资源名以 cleanBaseName 开头（用于季数匹配）
-              shouldMatch = cleanItemFull === fullCleanOriginal;
-              if (!shouldMatch && cleanItemFull.startsWith(cleanBaseName)) {
-                shouldMatch = true;
-              }
-            } else if (type === 'movie') {
-              // 电影：仅精确相等匹配
-              shouldMatch = cleanItemFull === fullCleanOriginal;
-            }
-          } else if (matchMode === 'fallback') {
-            shouldMatch = cleanItemFull === fullCleanOriginal;
-          }
-
-          // 电视剧季数校验：仅当用户明确指定季数时进行
-          if (type === 'tv' && shouldMatch && targetSeason !== null) {
-            const itemSeasonInfo = extractSeasonInfo(item.vod_name);
-            const itemSeason = itemSeasonInfo.seasonNumber;
-            if (itemSeason !== targetSeason) {
-              shouldMatch = false;
-            }
-          }
-
-          if (shouldMatch) {
-            return extractPlayInfoForCache(item, site.title, type, excludeKeywords);
-          }
-          return [];
-        });
-      } catch (error) {
-        const endTime = Date.now();
-        getSiteHealthManager().recordRequest(site.title, endTime - startTime, false, 0);
-        return [];
+    list.forEach(item => {
+      if (!item?.vod_name) return;
+      const score = calculateMatchScore(cleanSearchName, item.vod_name);
+      candidates.push({ item, score });
+      if (score > bestScore) {
+        bestScore = score;
+        best = item;
       }
     });
 
-    const results = await Promise.all(tasks);
-    return results.flat();
-  };
-
-  if (allResources.length === 0) {
-    let firstResults = await fetchFromSites(searchKeyword, 'first');
-    const urlSet = new Set();
-    firstResults = firstResults.filter(r => {
-      if (urlSet.has(r.url))
-        return false;
-      urlSet.add(r.url);
-      return true;
-    });
-
-    if (firstResults.length === 0 && baseKeyword.length > 0) {
-      const secondResults = await fetchFromSites(baseKeyword, 'fallback');
-      secondResults.forEach(r => {
-        if (!urlSet.has(r.url)) {
-          urlSet.add(r.url);
-          firstResults.push(r);
-        }
-      });
+    if (!best || bestScore < MIN_MATCH_SCORE) {
+      logInfo(`资源站 ${site.title} 无匹配结果 (最高分=${bestScore})`);
+      return;
     }
 
-    allResources = firstResults;
+    // 同一站内精确命中的结果全部保留（可拿到多条线路）
+    const hits = candidates.filter(c => c.score === 100).map(c => c.item);
+    const finalItems = hits.length > 0 ? hits : [best];
+    const seen = new Set();
 
-    if (type === 'tv') {
-      allResources = assignContinuousEpisodeNumbers(allResources, seriesName);
-    }
-
-    if (allResources.length > 0) {
-      try {
-        Widget.storage.set(cacheKey, allResources, 10800);
-      } catch (e) {
-      }
-    }
-  }
-
-  if (type === 'tv' && targetEpisode !== null) {
-    allResources = allResources.filter(res => res._ep !== undefined && res._ep !== null && res._ep === targetEpisode);
-  }
-
-  // 排序
-  if (type === 'movie') {
-    allResources.sort((a, b) => {
-      const aLang = a._languageTag || '';
-      const bLang = b._languageTag || '';
-      const aFeature = a._featureTag || '';
-      const bFeature = b._featureTag || '';
-
-      const getPriority = (lang, feature) => {
-        if (feature === '解说')
-          return 5;
-        const isMandarin = lang === '国语';
-        const isEarly = feature === '抢先版';
-        if (isMandarin && isEarly)
-          return 1;
-        if (isMandarin && !isEarly)
-          return 2;
-        if (!isMandarin && isEarly)
-          return 3;
-        return 4;
-      };
-
-      const aPriority = getPriority(aLang, aFeature);
-      const bPriority = getPriority(bLang, bFeature);
-
-      if (aPriority !== bPriority)
-        return aPriority - bPriority;
-      return (b._healthScore || 0) - (a._healthScore || 0);
+    finalItems.forEach(item => {
+      const key = `${item.vod_name}_${item.vod_id}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      matchedItems.push({ site, item, score: bestScore });
+      logInfo(`命中 [${site.title}]: ${item.vod_name} (${item.vod_id}) 得分: ${bestScore}`);
     });
-  } else {
-    // 电视剧排序：优先有上下部/子分集的资源（无论标签），然后按正片优先，再按集号，最后按健康度
-    allResources.sort((a, b) => {
-      const aHasExtra = (a._epInfo && (a._epInfo.partOrder > 0 || a._epInfo.subNumber > 0)) ? 1 : 0;
-      const bHasExtra = (b._epInfo && (b._epInfo.partOrder > 0 || b._epInfo.subNumber > 0)) ? 1 : 0;
-      if (aHasExtra !== bHasExtra)
-        return bHasExtra - aHasExtra;
+  });
 
-      const aIsTheatrical = a._featureTag === '正片';
-      const bIsTheatrical = b._featureTag === '正片';
-      if (aIsTheatrical !== bIsTheatrical)
-        return bIsTheatrical - aIsTheatrical;
-
-      const aEp = a._ep || 0;
-      const bEp = b._ep || 0;
-      if (aEp !== bEp)
-        return aEp - bEp;
-
-      return (b._healthScore || 0) - (a._healthScore || 0);
-    });
+  if (!matchedItems.length) {
+    logInfo(`未找到足够匹配的资源 (需要≥${MIN_MATCH_SCORE})`);
+    return [];
   }
 
-  return allResources;
+  // 提取播放资源
+  const targetEpNum = (type === 'tv' && episode) ? episode : null;
+  let playResources = matchedItems.flatMap(({ site, item }) =>
+    extractPlayInfo(item, item.vod_name, type, targetEpNum, excludeKeywords)
+      .map(r => ({ ...r, _siteTitle: site.title }))
+  );
+
+  logInfo(`提取到 ${playResources.length} 个播放资源`);
+
+  // 电视剧按集号排序（去重会保留首次出现顺序，因此先排序再去重）
+  if (type === 'tv' && targetEpNum === null) {
+    playResources.sort((a, b) => (a._episode || 0) - (b._episode || 0));
+  }
+
+  // 去重
+  const urlSet = new Set();
+  const uniqueResources = [];
+  playResources.forEach(r => {
+    if (urlSet.has(r.url)) return;
+    urlSet.add(r.url);
+    uniqueResources.push({
+      id: r.id,
+      name: r._siteTitle,
+      type: r.type,
+      description: r.description,
+      url: r.url
+    });
+  });
+
+  logInfo(`最终返回 ${uniqueResources.length} 个播放资源`);
+  if (uniqueResources.length > 0) {
+    logInfo(`返回示例: ${JSON.stringify(uniqueResources[0])}`);
+  }
+
+  return uniqueResources;
 }
