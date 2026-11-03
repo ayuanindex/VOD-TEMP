@@ -45,12 +45,12 @@ const MAX_SITE_CONCURRENCY = 10;  // 同时请求的资源站数量上限
 
 // ==================== Widget 元数据 ====================
 WidgetMetadata = {
-  id: "resource_sss",
-  title: "资源08",
+  id: "vod_muti_site",
+  title: "VOD多站聚合",
   icon: "",
   version: "1.5.0",
   requiredVersion: "0.0.1",
-  description: "VOD多资源站并发",
+  description: "VOD多站聚合",
   author: "MoYan",
   globalParams: [
     {
