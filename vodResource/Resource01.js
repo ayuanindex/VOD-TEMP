@@ -21,8 +21,8 @@ const CHINESE_NUM_MAP = {
 
 // TODO: id 和 title 修改
 WidgetMetadata = {
-  id: "vod_muti_site",
-  title: "VOD多站聚合",
+  id: "resource_01",
+  title: "资源01",
   icon: "https://rexnow.tv/assets/rex-mark.png",
   version: "1.0.0",
   requiredVersion: "0.0.1",
