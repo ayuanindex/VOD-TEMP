@@ -1,3 +1,4 @@
+// TODO 资源名称修改
 const RESOURCE_SITES = `
 新浪资源,http://api.xinlangapi.com/xinlangapi.php/provide/vod/
 金鹰资源,http://jinyingzy.com/provide/vod/
@@ -37,20 +38,29 @@ const RESOURCE_SITES = `
 魔都资源,https://www.mdzyapi.com/api.php/provide/vod/
 `;
 
-const REQUEST_TIMEOUT = 8000;
-const MIN_MATCH_SCORE = 60;  // 可配置的最低匹配分数
-const MAX_SITE_CONCURRENCY = 10;  // 同时请求的资源站数量上限
+const CHINESE_NUM_MAP = {
+  一: 1,
+  二: 2,
+  三: 3,
+  四: 4,
+  五: 5,
+  六: 6,
+  七: 7,
+  八: 8,
+  九: 9,
+  十: 10,
+};
 
-
-// ==================== Widget 元数据 ====================
+// TODO: id 和 title 修改
 WidgetMetadata = {
   id: "vod_muti_site",
   title: "VOD多站聚合",
-  icon: "",
-  version: "1.5.0",
+  icon: "https://rexnow.tv/assets/rex-mark.png",
+  version: "1.0.0",
   requiredVersion: "0.0.1",
-  description: "VOD多站聚合",
-  author: "MoYan",
+  description: "获取聚合VOD影片资源",
+  author: "ayuan",
+  site: "https://github.com/ayuanindex/VOD-TEMP",
   globalParams: [
     {
       name: "multiSource",
@@ -61,31 +71,20 @@ WidgetMetadata = {
         { title: "禁用", value: "disabled" },
       ],
     },
-    {
-      name: "VodData",
-      title: "资源站配置（每行一条：名称,接口地址；也支持 JSON 数组）",
-      type: "input",
-      value: RESOURCE_SITES
-    },
-    {
-      name: "excludeKeywords",
-      title: "需要过滤的关键词（用逗号、空格或换行分隔，例如：特辑,加更,集锦）",
-      type: "input",
-      value: ""
-    }
   ],
   modules: [
     {
       id: "loadResource",
-      title: "加载荐片资源",
+      title: "加载资源",
       functionName: "loadResource",
       type: "stream",
-      params: []
-    }
-  ]
+      params: [],
+    },
+  ],
 };
 
 // --- 辅助工具函数 ---
+
 const isM3U8Url = (url) => url?.toLowerCase().includes("m3u8") || false;
 
 function extractSeasonInfo(seriesName) {
@@ -245,9 +244,4 @@ async function loadResource(params) {
   }
 
   return allResources;
-}  if (uniqueResources.length > 0) {
-    logInfo(`返回示例: ${JSON.stringify(uniqueResources[0])}`);
-  }
-
-  return uniqueResources;
 }
