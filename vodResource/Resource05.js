@@ -7,15 +7,29 @@ const RESOURCE_SITES = `
 极速资源,https://jszyapi.com/api.php/provide/vod/
 `;
 
-// ==================== Widget 元数据 ====================
+const CHINESE_NUM_MAP = {
+  一: 1,
+  二: 2,
+  三: 3,
+  四: 4,
+  五: 5,
+  六: 6,
+  七: 7,
+  八: 8,
+  九: 9,
+  十: 10,
+};
+
+// TODO: id 和 title 修改
 WidgetMetadata = {
   id: "resource_05",
   title: "资源05",
-  icon: "",
-  version: "1.5.0",
+  icon: "https://rexnow.tv/assets/rex-mark.png",
+  version: "1.0.0",
   requiredVersion: "0.0.1",
-  description: "VOD多资源站并发",
-  author: "MoYan",
+  description: "获取聚合VOD影片资源",
+  author: "ayuan",
+  site: "https://github.com/ayuanindex/VOD-TEMP",
   globalParams: [
     {
       name: "multiSource",
@@ -42,12 +56,12 @@ WidgetMetadata = {
   modules: [
     {
       id: "loadResource",
-      title: "加载荐片资源",
+      title: "加载资源",
       functionName: "loadResource",
       type: "stream",
-      params: []
-    }
-  ]
+      params: [],
+    },
+  ],
 };
 
 // --- 辅助工具函数 ---
