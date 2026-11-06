@@ -4,15 +4,6 @@
   "icon": "https://rexnow.tv/assets/rex-mark.png",
   "widgets": [
     {
-      "id": "vod_muti_site",
-      "title": "VOD多站聚合",
-      "description": "VOD多站聚合",
-      "requiredVersion": "0.0.1",
-      "version": "1.5.0",
-      "author": "ayuan",
-      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/Widgets/VOD多站聚合.js"
-    },
-    {
       "id": "resource_01",
       "title": "资源01",
       "description": "获取聚合VOD影片资源",
