@@ -4,11 +4,20 @@
   "icon": "https://rexnow.tv/assets/rex-mark.png",
   "widgets": [
     {
+      "id": "vod_muti_site",
+      "title": "VOD多站聚合",
+      "description": "VOD多站聚合",
+      "requiredVersion": "0.0.1",
+      "version": "1.5.0",
+      "author": "ayuan",
+      "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/Widgets/VOD.js"
+    },
+    {
       "id": "resource_01",
       "title": "资源01",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource01.js"
     },
@@ -17,7 +26,7 @@
       "title": "资源02",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource02.js"
     },
@@ -26,7 +35,7 @@
       "title": "资源03",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource03.js"
     },
@@ -35,7 +44,7 @@
       "title": "资源04",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource04.js"
     },
@@ -44,7 +53,7 @@
       "title": "资源05",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource05.js"
     },
@@ -53,7 +62,7 @@
       "title": "资源06",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource06.js"
     },
@@ -62,7 +71,7 @@
       "title": "资源07",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource07.js"
     },
@@ -71,7 +80,7 @@
       "title": "资源08",
       "description": "获取聚合VOD影片资源",
       "requiredVersion": "0.0.1",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "ayuan",
       "url": "https://raw.githubusercontent.com/ayuanindex/VOD-TEMP/refs/heads/main/vodResource/Resource08.js"
     }
